@@ -1,0 +1,10 @@
+/Users/anilkumarreddy/work/messenger/src/main/java/com/protonmoney/messenger/MessengerApplication.java
+/Users/anilkumarreddy/work/messenger/src/main/java/com/protonmoney/messenger/services/UserService.java
+/Users/anilkumarreddy/work/messenger/src/main/java/com/protonmoney/messenger/configurations/MongoConfig.java
+/Users/anilkumarreddy/work/messenger/src/main/java/com/protonmoney/messenger/utils/ResponseGenerator.java
+/Users/anilkumarreddy/work/messenger/src/main/java/com/protonmoney/messenger/repositories/UserRepository.java
+/Users/anilkumarreddy/work/messenger/src/main/java/com/protonmoney/messenger/models/UserModel.java
+/Users/anilkumarreddy/work/messenger/src/main/java/com/protonmoney/messenger/controllers/UserController.java
+/Users/anilkumarreddy/work/messenger/src/main/java/com/protonmoney/messenger/requests/UserRegistrationResponse.java
+/Users/anilkumarreddy/work/messenger/src/main/java/com/protonmoney/messenger/dtos/User.java
+/Users/anilkumarreddy/work/messenger/src/main/java/com/protonmoney/messenger/requests/GetUsersResponse.java
