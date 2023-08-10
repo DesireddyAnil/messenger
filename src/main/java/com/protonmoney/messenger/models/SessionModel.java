@@ -6,14 +6,20 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-@Builder
+import java.time.Instant;
+
 @Data
-@Document(collection = "users")
-public class UserModel {
+@Builder
+@Document(collection = "sessions")
+public class SessionModel {
 	@Id
 	private String id;
 	@Field("username")
 	private String username;
-	@Field("password")
-	private String password;
+	@Field("is_logged_in")
+	private boolean isLoggedIn;
+	@Field("expiry_time_stamp")
+	private Instant expiryTimeStamp;
+	@Field("updated_at")
+	private Instant updatedAt;
 }

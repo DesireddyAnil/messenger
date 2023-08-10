@@ -1,6 +1,7 @@
 package com.protonmoney.messenger.services;
 
 import com.protonmoney.messenger.dtos.User;
+import com.protonmoney.messenger.exceptions.DuplicateUsernameException;
 import com.protonmoney.messenger.models.UserModel;
 import com.protonmoney.messenger.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,15 +17,15 @@ public class UserService {
 	private final UserRepository userRepository;
 
 	public List<String> getAllUsers(){
-		return userRepository.getAllUsers().stream().map(UserModel::getUserName).collect(Collectors.toList());
+		return userRepository.getAllUsers().stream().map(UserModel::getUsername).collect(Collectors.toList());
 	}
 
 	public UserModel createUser(User user) throws Exception {
-		List<UserModel> users = userRepository.findByUserName(user.getUserName());
+		List<UserModel> users = userRepository.findByUserName(user.getUsername());
 		if(users.isEmpty()){
-			UserModel userModel = UserModel.builder().userName(user.getUserName()).password(user.getPassword()).build();
+			UserModel userModel = UserModel.builder().username(user.getUsername()).password(user.getPassword()).build();
 			return userRepository.save(userModel);
 		}
-		throw new Exception("User already exists");
+		throw new DuplicateUsernameException("User already exists");
 	}
 }

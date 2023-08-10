@@ -8,7 +8,7 @@ import lombok.NonNull;
 @Builder
 public class User {
 	@NonNull
-	private String userName;
+	private String username;
 	@NonNull
 	private String password;
 }

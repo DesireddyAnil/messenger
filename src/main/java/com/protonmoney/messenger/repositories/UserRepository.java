@@ -16,7 +16,6 @@ import java.util.List;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class UserRepository {
 	private static final Class<UserModel> klass = UserModel.class;
-	@Qualifier("inMemoryMongoTemplate")
 	private final MongoTemplate mongoTemplate;
 
 	public List<UserModel> getAllUsers(){
@@ -27,9 +26,9 @@ public class UserRepository {
 		return mongoTemplate.save(userModel);
 	}
 
-	public List<UserModel> findByUserName(String userName){
+	public List<UserModel> findByUserName(String username){
 		Query query = new Query();
-		query.addCriteria(Criteria.where("username").is(userName));
+		query.addCriteria(Criteria.where("username").is(username));
 		return mongoTemplate.find(query, klass);
 	}
 }

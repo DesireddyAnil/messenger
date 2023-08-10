@@ -1,4 +1,4 @@
-package com.protonmoney.messenger.requests;
+package com.protonmoney.messenger.responses;
 
 import lombok.Data;
 import lombok.Builder;

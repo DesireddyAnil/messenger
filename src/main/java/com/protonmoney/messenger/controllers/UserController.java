@@ -1,10 +1,11 @@
 package com.protonmoney.messenger.controllers;
 
 import com.protonmoney.messenger.dtos.User;
-import com.protonmoney.messenger.requests.GetUsersResponse;
-import com.protonmoney.messenger.requests.UserRegistrationResponse;
+import com.protonmoney.messenger.exceptions.DuplicateUsernameException;
+import com.protonmoney.messenger.responses.GetUsersResponse;
+import com.protonmoney.messenger.responses.UserRegistrationResponse;
 import com.protonmoney.messenger.services.UserService;
-import com.protonmoney.messenger.utils.ResponseGenerator;
+import com.protonmoney.messenger.utils.*;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,8 @@ public class UserController {
 	@GetMapping("/get/users")
 	public ResponseEntity<GetUsersResponse> getUsers(){
 		try{
-			List<String> userNames = userService.getAllUsers();
-			return ResponseEntity.ok(ResponseGenerator.createGetUsersSuccessResponse(userNames));
+			List<String> usernames = userService.getAllUsers();
+			return ResponseEntity.ok(ResponseGenerator.createGetUsersSuccessResponse(usernames));
 		} catch (Exception e){
 			return ResponseEntity.internalServerError().body(ResponseGenerator.createGetUsersFailureResponse());
 		}
@@ -37,8 +38,10 @@ public class UserController {
 		try{
 			userService.createUser(user);
 			return ResponseEntity.ok(ResponseGenerator.createUserRegistrationSuccessResponse());
-		} catch (Exception e){
+		} catch (DuplicateUsernameException e){
 			return ResponseEntity.badRequest().body(ResponseGenerator.createUserRegistrationFailureResponse(e.getMessage()));
+		} catch (Exception e){
+			return ResponseEntity.internalServerError().body(ResponseGenerator.createUserRegistrationFailureResponse(e.getMessage()));
 		}
 	}
 }
